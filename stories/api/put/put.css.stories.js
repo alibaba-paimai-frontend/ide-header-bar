@@ -28,7 +28,7 @@ function onClickIconText(iconText) {
 
 const createNew = client => () => {
   const model = modelPropsGen();
-  client.post('/model', { model: model });
+  client.post('/headerbar', { model: model });
 };
 
 
@@ -51,12 +51,12 @@ function updateCss() {
   style[cssKey] = cssValue;
   // 更新节点属性，返回更新后的数值
   client
-    .put(`/model/styles/${selectedTarget}`, { style: style })
+    .put(`/headerbar/styles/${selectedTarget}`, { style: style })
     .then(res => {
       const { status, body } = res;
       if (status === 200) {
         const result = body;
-        client.get(`/model?filter=styles`).then(res => {
+        client.get(`/headerbar?filter=styles`).then(res => {
           const { status, body } = res;
           if (status === 200) {
             const attributes = body.attributes || {};
@@ -75,7 +75,7 @@ function updateCss() {
 
 storiesOf('API - put', module)
   .addParameters(wInfo(mdPut))
-  .addWithJSX('/model/styles 更改样式', () => {
+  .addWithJSX('/headerbar/styles 更改样式', () => {
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>

@@ -30,7 +30,7 @@ let selectedAttrName = '';
 
 const createNew = client => () => {
   const model = modelPropsGen();
-  client.post('/model', { model: model });
+  client.post('/headerbar', { model: model });
 };
 
 function handleChange(value) {
@@ -48,11 +48,11 @@ function updateAttr() {
 
   // 更新节点属性，返回更新后的数值
   client
-    .put(`/model`, { name: selectedAttrName, value: value })
+    .put(`/headerbar`, { name: selectedAttrName, value: value })
     .then(res => {
       const { status, body } = res;
       if (status === 200) {
-        client.get(`/model`).then(res => {
+        client.get(`/headerbar`).then(res => {
           const { status, body } = res;
           if (status === 200) {
             const attributes = body.attributes || {};
@@ -70,7 +70,7 @@ function updateAttr() {
 
 storiesOf('API - put', module)
   .addParameters(wInfo(mdPut))
-  .addWithJSX('/model 更改属性', () => {
+  .addWithJSX('/headerbar 更改属性', () => {
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>

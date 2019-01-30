@@ -37,7 +37,7 @@ let attributes = {};
 
 const getInfo = (client, filter) => () => {
   const query = filter && filter.length ? `filter=${filter.join(',')}` : '';
-  client.get(`/model?${query}`).then(res => {
+  client.get(`/headerbar?${query}`).then(res => {
     const { status, body } = res;
     if (status === 200) {
       attributes = body.attributes;
@@ -53,12 +53,12 @@ const getInfo = (client, filter) => () => {
 
 const createNew = client => () => {
   const model = modelPropsGen();
-  client.post('/model', { model: model });
+  client.post('/headerbar', { model: model });
 };
 
 storiesOf('API - get', module)
   .addParameters(wInfo(mdGet))
-  .addWithJSX('/model 获取属性信息', () => {
+  .addWithJSX('/headerbar 获取属性信息', () => {
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>

@@ -5,7 +5,7 @@ import { IContext } from './helper';
 export const router = new Router();
 
 // 移除操作
-router.del('model', '/model', function (ctx: IContext) {
+router.del('headerbar', '/headerbar', function (ctx: IContext) {
   const { stores } = ctx;
   ctx.response.body = {
     node: stores.resetToEmpty()

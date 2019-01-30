@@ -23,11 +23,11 @@ const styles = {
 
 const createNew = client => () => {
   const model = modelPropsGen();
-  client.post('/model', { model: model });
+  client.post('/headerbar', { model: model });
 };
 
 const resetSchema = client => () => {
-  client.del('/model');
+  client.del('/headerbar');
 };
 
 function onClickButton(button) {
@@ -40,7 +40,7 @@ function onClickIconText(iconText) {
 
 storiesOf('API - del', module)
   .addParameters(wInfo(mdDel))
-  .addWithJSX('/model 重置', () => {
+  .addWithJSX('/headerbar 重置', () => {
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>

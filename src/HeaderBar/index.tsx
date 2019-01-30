@@ -4,6 +4,7 @@ import { Row, Col, Button, Icon } from 'antd';
 import { ThemeProvider } from 'styled-components';
 
 import { debugInteract, debugRender } from '../lib/debug';
+import { pick } from '../lib/util';
 import {
   StyledContainer,
   StyledLogo,
@@ -284,10 +285,7 @@ export const HeaderBarAddStore = (stores: IStoresModel) => {
   ) {
     const { ...otherProps } = props;
     const { model } = stores;
-    const controlledProps: any = {};
-    CONTROLLED_KEYS.forEach((storeKey: string) => {
-      controlledProps[storeKey] = (model as any)[storeKey];
-    });
+    const controlledProps = pick(model, CONTROLLED_KEYS);
     debugRender(`[${stores.id}] rendering`);
     return <HeaderBar {...controlledProps} {...otherProps} />;
   });

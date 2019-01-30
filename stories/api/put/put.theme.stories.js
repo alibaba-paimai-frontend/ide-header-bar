@@ -24,7 +24,7 @@ function onClick(value) {
 
 const createNew = client => () => {
   const model = modelPropsGen();
-  client.post('/model', { model: model });
+  client.post('/headerbar', { model: model });
 };
 
 
@@ -38,12 +38,12 @@ function updateCss() {
   const targetValue = document.getElementById('targetValue').value;
   // 更新节点属性，返回更新后的数值
   client
-    .put(`/model/theme/${targetKey}`, { value: targetValue })
+    .put(`/headerbar/theme/${targetKey}`, { value: targetValue })
     .then(res => {
       const { status, body } = res;
       if (status === 200) {
         const result = body;
-        client.get(`/model?filter=theme`).then(res => {
+        client.get(`/headerbar?filter=theme`).then(res => {
           const { status, body } = res;
           if (status === 200) {
             const attributes = body.attributes || {};
@@ -62,7 +62,7 @@ function updateCss() {
 
 storiesOf('API - put', module)
   .addParameters(wInfo(mdPut))
-  .addWithJSX('/model/theme 更改 theme', () => {
+  .addWithJSX('/headerbar/theme 更改 theme', () => {
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>

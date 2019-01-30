@@ -5,7 +5,7 @@ import { isPlainObject } from '../../lib/util';
 
 export const router = new Router();
 // 更新单项属性
-router.put('model', '/model', function(ctx: IContext) {
+router.put('headerbar', '/headerbar', function(ctx: IContext) {
   const { stores, request } = ctx;
   const { name, value } = request.data;
 
@@ -19,7 +19,7 @@ router.put('model', '/model', function(ctx: IContext) {
 });
 
 // 更新 css 属性
-router.put('model', '/model/styles/:target', function(ctx: IContext) {
+router.put('headerbar', '/headerbar/styles/:target', function(ctx: IContext) {
   const { stores, request } = ctx;
   const { style } = request.data;
   const { target } = ctx.params;
@@ -42,7 +42,7 @@ router.put('model', '/model/styles/:target', function(ctx: IContext) {
 });
 
 // 更新 theme 属性
-router.put('model', '/model/theme/:target', function(ctx: IContext) {
+router.put('headerbar', '/headerbar/theme/:target', function(ctx: IContext) {
   const { stores, request } = ctx;
   const { value } = request.data;
   const { target } = ctx.params;

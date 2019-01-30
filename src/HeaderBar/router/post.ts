@@ -6,7 +6,7 @@ import { createModel } from '../schema/util';
 export const router = new Router();
 
 // 创新新的 model 
-router.post('model', '/model', function (ctx: IContext) {
+router.post('headerbar', '/headerbar', function (ctx: IContext) {
   const { stores, request } = ctx;
   const { model } = request.data;
 

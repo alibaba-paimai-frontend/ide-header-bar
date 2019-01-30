@@ -12,6 +12,8 @@ interface IStyledProps extends IHeaderBarProps {
 export const StyledContainer = styled.div.attrs({
   style: (props: IStyledProps) => props.style || {} // 优先级会高一些，行内样式
 })`
+  width: 100%;
+  background: white;
   height: ${(props: IStyledProps) => props.height || '65px'};
   border-bottom: 2px solid ${(props: IStyledProps) => props.theme.main};
 `;
