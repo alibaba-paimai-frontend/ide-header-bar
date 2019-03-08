@@ -67,7 +67,7 @@ const IconTextModel = types.model('IconTextModel', {
 
 // 获取被 store 控制的 key 的列表
 export type THeaderBarControlledKeys =
-  | keyof SnapshotOrInstance<typeof HeaderBarModel>
+  keyof SnapshotOrInstance<typeof HeaderBarModel>
   | 'styles'
   | 'theme';
 
