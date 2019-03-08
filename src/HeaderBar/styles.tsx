@@ -1,11 +1,11 @@
 import { Button } from 'antd';
 import styled from 'styled-components';
+import { IBaseStyledProps } from 'ide-lib-base-component';
 import { desaturate } from 'polished';
+
 import { IHeaderBarProps } from './index';
 
-interface IStyledProps extends IHeaderBarProps {
-  style?: React.CSSProperties;
-  className?: string;
+interface IStyledProps extends IHeaderBarProps, IBaseStyledProps{
   [prop: string]: any;
 }
 
@@ -19,29 +19,24 @@ export const StyledContainer = styled.div.attrs({
 `;
 
 export const StyledLogo = styled.img.attrs({
-  style: (props: any) => props.style || {}
+  style: (props: IStyledProps) => props.style || {}
 })`
   max-width: 210px;
   max-height: 64px;
 `;
 
-interface IStyledIconText extends IStyledProps {
-  active?: boolean;
-}
-
 export const StyledIconText = styled.div.attrs({
-  style: (props: IStyledIconText) => props.style || {}
-})`
+  style: (props: IStyledProps) => props.style || {}
+}) <IStyledProps>`
   margin-top: 5px;
   cursor: pointer;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  color: ${(props: IStyledIconText) =>
-    props.active ? props.theme.main : props.theme.second};
+  color: ${(props: IStyledProps) => props.active ? props.theme.main : props.theme.second};
   &:hover {
-    color: ${(props: IStyledIconText) => props.theme.main};
+    color: ${(props: IStyledProps) => props.theme.main};
   }
   .oper-icon {
     font-size: 24px;

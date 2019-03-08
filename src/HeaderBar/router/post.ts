@@ -1,4 +1,5 @@
 import Router from 'ette-router';
+import { buildNormalResponse } from 'ide-lib-base-component';
 
 import { IContext } from './helper';
 import { createModel } from '../schema/util';
@@ -6,12 +7,11 @@ import { createModel } from '../schema/util';
 export const router = new Router();
 
 // 创新新的 model 
-router.post('headerbar', '/headerbar', function (ctx: IContext) {
+router.post('createModel', '/headerbar', function (ctx: IContext) {
   const { stores, request } = ctx;
   const { model } = request.data;
 
   stores.setModel(createModel(model));
-  // stores.setSchema(createSchemaModel(schema));
 
-  ctx.response.status = 200;
+  buildNormalResponse(ctx, 200, { success: true });
 });

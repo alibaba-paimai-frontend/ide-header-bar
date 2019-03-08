@@ -50,12 +50,12 @@ function updateAttr() {
   client
     .put(`/headerbar`, { name: selectedAttrName, value: value })
     .then(res => {
-      const { status, body } = res;
+      const { status } = res;
       if (status === 200) {
         client.get(`/headerbar`).then(res => {
           const { status, body } = res;
           if (status === 200) {
-            const attributes = body.attributes || {};
+            const attributes = body.data.attributes || {};
             document.getElementById('info').innerText =
               `更新操作：; \n` + JSON.stringify(attributes, null, 4);
           }

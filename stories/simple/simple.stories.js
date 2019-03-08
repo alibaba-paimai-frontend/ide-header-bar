@@ -27,7 +27,7 @@ const clickBtn = target => () => {
 storiesOf('基础使用', module)
   .addParameters(wInfo(mdMobx))
   .addWithJSX('使用 mobx 化的 props', () => {
-    const HeaderBarWithStore = HeaderBarAddStore({ model: propsModel });
+    const HeaderBarWithStore = HeaderBarAddStore({ stores: { model: propsModel }});
     return (
       <div>
         <button onClick={clickBtn(propsModel)}>更改 logo（会响应）</button>

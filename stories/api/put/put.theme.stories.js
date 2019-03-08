@@ -38,7 +38,7 @@ function updateCss() {
   const targetValue = document.getElementById('targetValue').value;
   // 更新节点属性，返回更新后的数值
   client
-    .put(`/headerbar/theme/${targetKey}`, { value: targetValue })
+    .put(`/model/theme/${targetKey}`, { value: targetValue })
     .then(res => {
       const { status, body } = res;
       if (status === 200) {
@@ -46,9 +46,9 @@ function updateCss() {
         client.get(`/headerbar?filter=theme`).then(res => {
           const { status, body } = res;
           if (status === 200) {
-            const attributes = body.attributes || {};
+            const attributes = body.data.attributes || {};
             document.getElementById('info').innerText =
-              `更新操作：${result.success} - ${result.message}; \n` +
+              `更新操作：${result.data.success} - ${result.data.message}; \n` +
               JSON.stringify(attributes, null, 4);
           }
         });
@@ -62,7 +62,7 @@ function updateCss() {
 
 storiesOf('API - put', module)
   .addParameters(wInfo(mdPut))
-  .addWithJSX('/headerbar/theme 更改 theme', () => {
+  .addWithJSX('/model/theme 更改 theme', () => {
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>

@@ -40,7 +40,7 @@ const getInfo = (client, filter) => () => {
   client.get(`/headerbar?${query}`).then(res => {
     const { status, body } = res;
     if (status === 200) {
-      attributes = body.attributes;
+      attributes = body.data.attributes;
     }
 
     document.getElementById('info').innerText = JSON.stringify(

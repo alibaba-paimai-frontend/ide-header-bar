@@ -51,7 +51,7 @@ function updateCss() {
   style[cssKey] = cssValue;
   // 更新节点属性，返回更新后的数值
   client
-    .put(`/headerbar/styles/${selectedTarget}`, { style: style })
+    .put(`/model/styles/${selectedTarget}`, { style: style })
     .then(res => {
       const { status, body } = res;
       if (status === 200) {
@@ -59,9 +59,9 @@ function updateCss() {
         client.get(`/headerbar?filter=styles`).then(res => {
           const { status, body } = res;
           if (status === 200) {
-            const attributes = body.attributes || {};
+            const attributes = body.data.attributes || {};
             document.getElementById('info').innerText =
-              `更新操作：${result.success} - ${result.message}; \n` +
+              `更新操作：${result.data.success} - ${result.data.message}; \n` +
               JSON.stringify(attributes, null, 4);
           }
         });
