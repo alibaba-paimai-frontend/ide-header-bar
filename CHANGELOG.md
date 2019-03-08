@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/alibaba-paimai-frontend/ide-header-bar/compare/v0.1.1...v0.1.2) (2019-03-08)
+
+
+### Features
+
+* **功能改善: 代码风格:** 将代码升级到 tpl 最新的模板格式 ([a82c9a7](https://github.com/alibaba-paimai-frontend/ide-header-bar/commit/a82c9a7))
+
+
+
 <a name="0.1.1"></a>
 ## 0.1.1 (2019-01-30)
 
