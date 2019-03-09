@@ -16,7 +16,7 @@ import { AppFactory } from './controller/index';
 import { StoresFactory, IStoresModel } from './schema/stores';
 import { THeaderBarControlledKeys, CONTROLLED_KEYS } from './schema/index';
 import { showConsole } from './solution';
-
+export const a = {};
 interface ISubComponents {
 }
 
@@ -121,7 +121,7 @@ export const DEFAULT_PROPS: IHeaderBarProps = {
 /**
  * buttons 子组件
  */
-export const HeaderBarButtons = observer((props: Pick<IHeaderBarProps, 'buttons' | 'onClickButton'>)=>{
+export const HeaderBarButtons: React.FunctionComponent<Pick<IHeaderBarProps, 'buttons' | 'onClickButton'>> = observer((props)=>{
   const onClickButton = useCallback((button: IHeaderBarButton) => (
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
@@ -156,7 +156,7 @@ HeaderBarButtons.displayName = 'HeaderBarButtons';
 /**
  * icon texts 子组件
  */
-export const HeaderBarIconTexts = observer((props: Pick<IHeaderBarProps, 'iconTexts' | 'onClickIconText'>) => {
+export const HeaderBarIconTexts: React.FunctionComponent<Pick<IHeaderBarProps, 'iconTexts' | 'onClickIconText'>> = observer((props) => {
   
   const { iconTexts } = props;
 
@@ -194,7 +194,7 @@ HeaderBarIconTexts.displayName = 'HeaderBarIconTexts';
  * 使用高阶组件打造的组件生成器
  * @param subComponents - 子组件列表
  */
-export const HeaderBarHOC = (subComponents: ISubComponents) => {
+export const HeaderBarHOC: (subComponents: ISubComponents) => React.FunctionComponent<IHeaderBarProps> = (subComponents) => {
   const HeaderBarHOC = (props: IHeaderBarProps) => {
     const {
       logo,
@@ -252,7 +252,7 @@ export const HeaderBar = HeaderBarHOC({
  * 科里化创建 HeaderBarWithStore 组件
  * @param stores - store 模型实例
  */
-export const HeaderBarAddStore = (storesEnv: IStoresEnv<IStoresModel>) => {
+export const HeaderBarAddStore: (storesEnv: IStoresEnv<IStoresModel>) => React.FunctionComponent<IHeaderBarProps> = (storesEnv) => {
   const {stores} = storesEnv;
   const HeaderBarHasSubStore = HeaderBarHOC({
   });
