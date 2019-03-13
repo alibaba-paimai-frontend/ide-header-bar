@@ -51,7 +51,7 @@ export const CONTROLLED_KEYS: string[] = BASE_CONTROLLED_KEYS.concat([
 /**
  * HeaderBar 对应的模型
  */
-export const HeaderBarModel = BaseModel
+export const HeaderBarModel: IAnyModelType = BaseModel
   .named('HeaderBarModel')
   .props({
     logo: types.optional(types.string, ''),

@@ -2,7 +2,7 @@ import React, { Component, useCallback } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Row, Col, Icon } from 'antd';
 import { pick } from 'ide-lib-utils';
-import { based, Omit, IBaseTheme, IBaseComponentProps, IStoresEnv, useIndectedEvents } from 'ide-lib-base-component';
+import { based, Omit, IBaseTheme, IBaseComponentProps, IStoresEnv, useInjectedEvents } from 'ide-lib-base-component';
 
 
 import { debugInteract, debugRender } from '../lib/debug';
@@ -265,7 +265,7 @@ export const HeaderBarAddStore: (storesEnv: IStoresEnv<IStoresModel>) => React.F
     debugRender(`[${stores.id}] rendering`);
 
 
-  const otherPropsWithInjected = useIndectedEvents <IHeaderBarProps, IStoresModel>(storesEnv, otherProps, {
+  const otherPropsWithInjected = useInjectedEvents <IHeaderBarProps, IStoresModel>(storesEnv, otherProps, {
     'onClick': [showConsole]
   });
 
