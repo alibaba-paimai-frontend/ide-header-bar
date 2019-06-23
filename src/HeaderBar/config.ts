@@ -6,6 +6,7 @@ import { DEFAULT_PROPS, IHeaderBarProps } from './index';
 import { showConsole } from './solution/model';
 
 import { subComponents, ISubProps } from './subs';
+import { modelExtends } from './model/index';
 
 import { router as GetRouter } from './router/get';
 import { router as PostRouter } from './router/post';
@@ -34,7 +35,8 @@ export const configHeaderBar: IModuleConfig<IHeaderBarProps, ISubProps> = {
       logo: types.optional(types.string, ''),
       buttons: types.array(IconButtonModel),
       iconTexts: types.array(IconTextModel)
-    }
+    },
+    extends: modelExtends
   }
 };
 

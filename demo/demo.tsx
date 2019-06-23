@@ -12,10 +12,19 @@ const Panel = Collapse.Panel;
 
 const { ComponentWithStore: HeaderBarWithStore, client } = HeaderBarFactory();
 
-function onClickWithStore(value) {
+function onClickButtonWithStore(value) {
+  console.log('clicked button:', value.id);
   client.put(`/model/buttons/${value.id}`, {
     name: 'title',
-    value: Math.random() * 10
+    value: parseFloat('' + Math.random() * 10).toFixed(3)
+  });
+}
+
+function onClickIconTextWithStore(value) {
+  console.log('clicked icontext:', value.id);
+  client.put(`/model/icons/${value.id}`, {
+    name: 'title',
+    value: parseFloat('' + Math.random() * 10).toFixed(3)
   });
 }
 
@@ -34,7 +43,10 @@ render(
       <HeaderBar {...props} />
     </Panel>
     <Panel header="包含 store 功能" key="1">
-      <HeaderBarWithStore onClickButton={onClickWithStore} />
+      <HeaderBarWithStore
+        onClickButton={onClickButtonWithStore}
+        onClickIconText={onClickIconTextWithStore}
+      />
     </Panel>
   </Collapse>,
   document.getElementById('example') as HTMLElement
