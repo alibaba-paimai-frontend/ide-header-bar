@@ -9,7 +9,7 @@ import { HeaderBarFactory } from '../../../src';
 import { modelPropsGen } from '../../helper';
 
 const {
-  HeaderBarWithStore: HeaderBarWithStore1,
+  ComponentWithStore: HeaderBarWithStore1,
   client: client1
 } = HeaderBarFactory();
 
@@ -23,11 +23,11 @@ const styles = {
 
 const createNew = client => () => {
   const model = modelPropsGen();
-  client.post('/headerbar', { model: model });
+  client.post('/model', { model: model });
 };
 
 const resetSchema = client => () => {
-  client.del('/headerbar');
+  client.del('/model');
 };
 
 function onClickButton(button) {
@@ -40,7 +40,7 @@ function onClickIconText(iconText) {
 
 storiesOf('API - del', module)
   .addParameters(wInfo(mdDel))
-  .addWithJSX('/headerbar 重置', () => {
+  .addWithJSX('/model 重置', () => {
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>

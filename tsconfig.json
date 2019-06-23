@@ -25,7 +25,7 @@
         ]
     },
     "include": [
-        "./src/**/*.ts"
+        "./src/**/*.ts", "src/HeaderBar/mods/IconButtons/index.tsx"
     ],
     "awesomeTypescriptLoaderOptions": {
         "reportFiles": [

@@ -8,7 +8,7 @@ import { HeaderBarFactory } from '../../../src';
 import { modelPropsGen } from '../../helper';
 
 const {
-  HeaderBarWithStore: HeaderBarWithStore1,
+  ComponentWithStore: HeaderBarWithStore1,
   client: client1
 } = HeaderBarFactory();
 
@@ -20,7 +20,7 @@ const {
 const styles = {
   demoWrap: {
     display: 'flex',
-    'flexDirection': 'column',
+    flexDirection: 'column',
     width: '100%'
   }
 };
@@ -37,7 +37,7 @@ let attributes = {};
 
 const getInfo = (client, filter) => () => {
   const query = filter && filter.length ? `filter=${filter.join(',')}` : '';
-  client.get(`/headerbar?${query}`).then(res => {
+  client.get(`/model?${query}`).then(res => {
     const { status, body } = res;
     if (status === 200) {
       attributes = body.data.attributes;
@@ -53,12 +53,12 @@ const getInfo = (client, filter) => () => {
 
 const createNew = client => () => {
   const model = modelPropsGen();
-  client.post('/headerbar', { model: model });
+  client.post('/model', { model: model });
 };
 
 storiesOf('API - get', module)
   .addParameters(wInfo(mdGet))
-  .addWithJSX('/headerbar 获取属性信息', () => {
+  .addWithJSX('/model 获取属性信息', () => {
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>
@@ -79,7 +79,6 @@ storiesOf('API - get', module)
             <div id="info" />
           </Col>
         </Row>
- 
       </Row>
     );
   });

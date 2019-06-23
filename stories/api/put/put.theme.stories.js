@@ -7,7 +7,7 @@ import mdPut from './put.md';
 import { HeaderBarFactory } from '../../../src';
 import { modelPropsGen } from '../../helper';
 
-const { HeaderBarWithStore, client } = HeaderBarFactory();
+const { ComponentWithStore: HeaderBarWithStore, client } = HeaderBarFactory();
 
 const { Option } = Select;
 const styles = {
@@ -24,9 +24,8 @@ function onClick(value) {
 
 const createNew = client => () => {
   const model = modelPropsGen();
-  client.post('/headerbar', { model: model });
+  client.post('/model', { model: model });
 };
-
 
 function updateCss() {
   const targetKey = document.getElementById('targetKey').value;
@@ -43,7 +42,7 @@ function updateCss() {
       const { status, body } = res;
       if (status === 200) {
         const result = body;
-        client.get(`/headerbar?filter=theme`).then(res => {
+        client.get(`/model?filter=theme`).then(res => {
           const { status, body } = res;
           if (status === 200) {
             const attributes = body.data.attributes || {};
@@ -66,9 +65,7 @@ storiesOf('API - put', module)
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>
-          <HeaderBarWithStore
-            onClick={onClick}
-          />
+          <HeaderBarWithStore onClick={onClick} />
         </Col>
         <Row type="flex" justify="space-between" align="top">
           <Col span={10} offset={2}>

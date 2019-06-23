@@ -7,7 +7,7 @@ import mdPut from './put.md';
 import { HeaderBarFactory } from '../../../src';
 import { modelPropsGen } from '../../helper';
 
-const { HeaderBarWithStore, client } = HeaderBarFactory();
+const { ComponentWithStore: HeaderBarWithStore, client } = HeaderBarFactory();
 
 const { Option } = Select;
 const styles = {
@@ -30,7 +30,7 @@ let selectedAttrName = '';
 
 const createNew = client => () => {
   const model = modelPropsGen();
-  client.post('/headerbar', { model: model });
+  client.post('/model', { model: model });
 };
 
 function handleChange(value) {
@@ -48,11 +48,11 @@ function updateAttr() {
 
   // 更新节点属性，返回更新后的数值
   client
-    .put(`/headerbar`, { name: selectedAttrName, value: value })
+    .put(`/model`, { name: selectedAttrName, value: value })
     .then(res => {
       const { status } = res;
       if (status === 200) {
-        client.get(`/headerbar`).then(res => {
+        client.get(`/model`).then(res => {
           const { status, body } = res;
           if (status === 200) {
             const attributes = body.data.attributes || {};
@@ -70,7 +70,7 @@ function updateAttr() {
 
 storiesOf('API - put', module)
   .addParameters(wInfo(mdPut))
-  .addWithJSX('/headerbar 更改属性', () => {
+  .addWithJSX('/model 更改属性', () => {
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>

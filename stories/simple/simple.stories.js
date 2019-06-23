@@ -2,12 +2,19 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { wInfo } from '../../.storybook/utils';
 
-import { HeaderBar, createModel, HeaderBarAddStore } from '../../src/';
+import {
+  HeaderBar,
+  HeaderBarAddStore,
+  HeaderBarFactory,
+  HeaderBarModel
+} from '../../src/';
+import { createModel } from 'ide-lib-engine';
 import mdMobx from './simple-mobx.md';
 import mdPlain from './simple-plain.md';
 
 const propsNormal = {};
-const propsModel = createModel(propsNormal);
+const propsModel = createModel(HeaderBarModel, propsNormal);
+
 
 function onClickButton(button) {
   console.log('点击的按钮：', button.id, button.title);
@@ -27,7 +34,9 @@ const clickBtn = target => () => {
 storiesOf('基础使用', module)
   .addParameters(wInfo(mdMobx))
   .addWithJSX('使用 mobx 化的 props', () => {
-    const HeaderBarWithStore = HeaderBarAddStore({ stores: { model: propsModel }});
+    const HeaderBarWithStore = HeaderBarAddStore({
+      stores: { model: propsModel }
+    });
     return (
       <div>
         <button onClick={clickBtn(propsModel)}>更改 logo（会响应）</button>

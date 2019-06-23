@@ -1,16 +1,28 @@
-// import * as React from 'react';
-// import { render } from 'react-dom';
-// import Hello from './components/Hello';
+import { Instance } from 'mobx-state-tree';
+import { initSuitsFromConfig } from 'ide-lib-engine';
 
-// render(
-//   <Hello name="TypeScript" enthusiasmLevel={10} />,
-//   document.getElementById('example') as HTMLElement
-// );
-
-
+export * from './HeaderBar/config';
 export * from './HeaderBar/';
-export * from './HeaderBar/schema/';
-export * from './HeaderBar/schema/util';
-export * from './HeaderBar/schema/stores';
 
-export * from './HeaderBar/controller/';
+import { HeaderBarCurrying } from './HeaderBar/';
+import { configHeaderBar } from './HeaderBar/config';
+
+const {
+    ComponentModel: HeaderBarModel,
+    StoresModel: HeaderBarStoresModel,
+    NormalComponent: HeaderBar,
+    ComponentHOC: HeaderBarHOC,
+    ComponentAddStore: HeaderBarAddStore,
+    ComponentFactory: HeaderBarFactory
+} = initSuitsFromConfig(HeaderBarCurrying,configHeaderBar);
+
+export {
+    HeaderBarModel,
+    HeaderBarStoresModel,
+    HeaderBar,
+    HeaderBarHOC,
+    HeaderBarAddStore,
+    HeaderBarFactory
+};
+
+export interface IHeaderBarModel extends Instance<typeof HeaderBarModel> { }

@@ -7,7 +7,7 @@ import mdPut from './put.md';
 import { HeaderBarFactory } from '../../../src';
 import { modelPropsGen } from '../../helper';
 
-const { HeaderBarWithStore, client } = HeaderBarFactory();
+const { ComponentWithStore: HeaderBarWithStore, client } = HeaderBarFactory();
 
 const { Option } = Select;
 const styles = {
@@ -28,9 +28,7 @@ function onClickIconText(iconText) {
 
 const createNew = client => () => {
   const model = modelPropsGen();
-  client.post('/headerbar', { model: model });
-};
-
+  client.post('/model', { model: model }); };
 
 let selectedTarget = '';
 
@@ -56,8 +54,7 @@ function updateCss() {
       const { status, body } = res;
       if (status === 200) {
         const result = body;
-        client.get(`/headerbar?filter=styles`).then(res => {
-          const { status, body } = res;
+        client.get(`/model?filter=styles`).then(res => { const { status, body } = res;
           if (status === 200) {
             const attributes = body.data.attributes || {};
             document.getElementById('info').innerText =
@@ -75,7 +72,7 @@ function updateCss() {
 
 storiesOf('API - put', module)
   .addParameters(wInfo(mdPut))
-  .addWithJSX('/headerbar/styles 更改样式', () => {
+  .addWithJSX('/model/styles 更改样式', () => {
     return (
       <Row style={styles.demoWrap}>
         <Col span={24}>
